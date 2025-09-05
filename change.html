@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>MaxChange - PWA</title>
+  <link rel="shortcut icon" href="Screenshot_20250826_154108_Chrome.jpg" type="image/x-icon">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@500&display=swap');
+
+    * {
+      box-sizing: border-box;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+
+    body {
+      margin:0;
+      height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      font-family:'Vazirmatn',sans-serif;
+      overflow:hidden;
+      color:#eaffff;
+      background:linear-gradient(-45deg,#ffffff,#000000,#afafff,#1a1a2e);
+      background-size:400% 400%;
+      animation:gradientMove 15s ease infinite;
+      padding:0 18px;
+      text-align:center;
+    }
+
+    @keyframes gradientMove {
+      0% {background-position:0% 50%}
+      50% {background-position:100% 50%}
+      100% {background-position:0% 50%}
+    }
+
+    h2 {
+      font-family:'Orbitron',sans-serif;
+      margin:0 0 18px;
+      color:#00fff7;
+      text-shadow:0 0 8px #00fff7,0 0 20px #ff00c8;
+      pointer-events:none;
+    }
+
+    .card {
+      width:90%;
+      max-width:360px;
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:16px;
+      padding:18px 18px 14px;
+      backdrop-filter:blur(6px);
+      box-shadow:0 8px 28px rgba(0,0,0,.4);
+      text-align:center;
+      color:#e8ffff;
+    }
+
+    label {
+      display:block;
+      text-align:right;
+      font-size:13px;
+      color:#cfeff0;
+      margin:10px 4px 6px;
+      pointer-events:none;
+    }
+
+    input {
+      width:100%;
+      padding:12px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(0,0,0,.45);
+      color:#fff;
+      outline:none;
+      transition:.2s;
+    }
+    input:focus {
+      border-color:rgba(0,255,247,.6);
+      box-shadow:0 0 12px rgba(0,255,247,.15);
+    }
+
+    .btn {
+      width:100%;
+      padding:12px;
+      margin-top:14px;
+      border:none;
+      border-radius:12px;
+      background:linear-gradient(135deg,#ff00c8,#00fff7);
+      color:#061017;
+      font-weight:700;
+      cursor:pointer;
+      transition:.25s;
+      text-transform:uppercase;
+    }
+    .btn:hover {
+      transform:translateY(-1px);
+      box-shadow:0 0 14px rgba(0,255,247,.25);
+    }
+
+    .rating {
+      display:none;
+      margin-top:16px;
+      font-size:30px;
+      letter-spacing:5px;
+      cursor:pointer;
+    }
+    .star {
+      color:#fff; /* پیش‌فرض سفید */
+      transition:color .2s;
+    }
+    .star.active {
+      color:#ffd700; /* زرد وقتی انتخاب شد */
+      text-shadow:0 0 6px #ffd700;
+    }
+    .rating-text {
+      display:none;
+      margin-top:8px;
+      font-size:14px;
+      color:#00fff7;
+      text-shadow:0 0 6px #00fff7;
+    }
+  </style>
+</head>
+<body 
+  oncontextmenu="return false" 
+  oncopy="return false" 
+  oncut="return false" 
+  onpaste="return false" 
+  onselectstart="return false"
+>
+  <div class="card">
+    <h2>چنج اکانت کرکی</h2>
+    <form id="myForm" autocomplete="off">
+      <label for="email">ایمیل اکانت</label>
+      <input id="email" name="email" type="email" placeholder="example@gmail.com" required>
+
+      <label for="pass">رمز عبور</label>
+      <input id="pass" name="pass" type="password" placeholder="••••••••" required>
+
+      <button class="btn" type="submit">ادامه</button>
+    </form>
+
+    <!-- بخش امتیازدهی -->
+    <div class="rating" id="ratingStars">
+      <span class="star">★</span>
+      <span class="star">★</span>
+      <span class="star">★</span>
+      <span class="star">★</span>
+      <span class="star">★</span>
+    </div>
+    <p class="rating-text" id="ratingText">از برنامه راضی هستید؟</p>
+  </div>
+
+  <script>
+    const form = document.getElementById("myForm");
+    const ratingStars = document.getElementById("ratingStars");
+    const ratingText = document.getElementById("ratingText");
+    const stars = document.querySelectorAll(".star");
+
+    form.addEventListener("submit", function(e) {
+      e.preventDefault(); 
+      form.style.display = "none"; 
+      ratingStars.style.display = "block"; 
+      ratingText.style.display = "block"; 
+
+      // بعد از 7 ثانیه برو به success.html
+      setTimeout(() => {
+        window.location.href = "success.html";
+      }, 7000);
+    });
+
+    // کنترل ستاره‌ها
+    stars.forEach((star, index) => {
+      star.addEventListener("click", () => {
+        stars.forEach((s, i) => {
+          if (i <= index) {
+            s.classList.add("active");
+          } else {
+            s.classList.remove("active");
+          }
+        });
+      });
+    });
+
+    // جلوگیری از کلیدهای میانبر مرورگر
+    document.addEventListener("keydown", function(e) {
+      if ((e.ctrlKey && ["u","U","s","S","c","C"].includes(e.key)) || e.key === "F12") {
+        e.preventDefault();
+        return false;
+      }
+    });
+  </script>
+</body>
+</html>

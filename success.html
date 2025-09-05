@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>MaxChange - PWA</title>
+  <link rel="shortcut icon" href="Screenshot_20250826_154108_Chrome.jpg" type="image/x-icon">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@500&display=swap');
+
+    * {
+      box-sizing: border-box;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      margin:0;
+      height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      font-family:'Vazirmatn',sans-serif;
+      overflow:hidden;
+      color:#eaffff;
+      background:linear-gradient(-45deg,#ffffff,#000000,#afafff,#1a1a2e);
+      background-size:400% 400%;
+      animation:gradientMove 15s ease infinite;
+      padding:0 18px;
+      text-align:center;
+    }
+
+    @keyframes gradientMove {
+      0% {background-position:0% 50%}
+      50% {background-position:100% 50%}
+      100% {background-position:0% 50%}
+    }
+
+    .card {
+      width:92%;
+      max-width:380px;
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:18px;
+      padding:24px 22px;
+      backdrop-filter:blur(6px);
+      box-shadow:0 8px 28px rgba(0,0,0,.4);
+    }
+
+    .check-wrap {
+      width:90px;
+      height:90px;
+      border-radius:50%;
+      margin:0 auto 14px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:radial-gradient(circle at 30% 30%,rgba(0,255,147,.3),rgba(0,255,120,.2) 40%,transparent 70%);
+      position:relative;
+    }
+
+    .check {
+      width:58px;
+      height:58px;
+      border-radius:50%;
+      background:#11d97a;
+      box-shadow:0 0 22px rgba(17,217,122,.55) inset,0 0 18px rgba(17,217,122,.45);
+      position:relative;
+    }
+
+    .check:after {
+      content:"";
+      position:absolute;
+      left:16px;
+      top:26px;
+      width:12px;
+      height:24px;
+      border:4px solid #083b25;
+      border-top:0;
+      border-left:0;
+      transform:rotate(45deg);
+    }
+
+    h2 {
+      font-family:'Orbitron',sans-serif;
+      margin:6px 0 8px;
+      color:#00fff7;
+      text-shadow:0 0 10px rgba(0,255,247,.35);
+      pointer-events:none;
+    }
+
+    p {
+      margin:6px 0 0;
+      color:#cfeff0;
+      font-size:14px;
+      pointer-events:none;
+    }
+
+    .tg {
+      margin-top:12px;
+      font-size:13px;
+      opacity:.95;
+      pointer-events:none;
+    }
+
+    .btn {
+      margin-top:16px;
+      display:inline-block;
+      padding:10px 14px;
+      border-radius:12px;
+      background:linear-gradient(135deg,#ff00c8,#00fff7);
+      color:#061017;
+      text-decoration:none;
+      font-weight:700;
+      -webkit-tap-highlight-color: transparent;
+      transition:.25s;
+    }
+
+    .btn:hover {
+      transform:translateY(-1px);
+      box-shadow:0 0 14px rgba(0,255,247,.25);
+    }
+  </style>
+</head>
+<body 
+  oncontextmenu="return false" 
+  oncopy="return false" 
+  oncut="return false" 
+  onpaste="return false" 
+  onselectstart="return false"
+>
+  <div class="card">
+    <div class="check-wrap">
+      <div class="check"></div>
+    </div>
+    <h2>چنج با موفقیت انجام شد</h2>
+    <p>ربات رویال چنج : اکانت کرک شما 1 ساعت دیگه چنج می شود</p>
+    <p class="tg"></p>
+    <a class="btn" href="verify.html">بازگشت به منو</a>
+  </div>
+
+  <script>
+    // جلوگیری از کلیدهای میانبر مرورگر
+    document.addEventListener("keydown", function(e) {
+      if ((e.ctrlKey && ["u","U","s","S","c","C"].includes(e.key)) || e.key === "F12") {
+        e.preventDefault();
+        return false;
+      }
+    });
+  </script>
+</body>
+</html>

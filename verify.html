@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>MaxChange - PWA</title>
+  <link rel="shortcut icon" href="Screenshot_20250826_154108_Chrome.jpg" type="image/x-icon">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@500&display=swap');
+
+    * {
+      box-sizing:border-box;
+      -webkit-user-select:none;
+      -moz-user-select:none;
+      -ms-user-select:none;
+      user-select:none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+
+    body {
+      margin:0;
+      height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      font-family:'Vazirmatn',sans-serif;
+      overflow:hidden;
+      color:#eaffff;
+      background:linear-gradient(-45deg,#ffffff,#000000,#afafff,#1a1a2e);
+      background-size:400% 400%;
+      animation:gradientMove 15s ease infinite;
+      padding:0 18px;
+      text-align:center;
+    }
+
+    @keyframes gradientMove{
+      0%{background-position:0% 50%}
+      50%{background-position:100% 50%}
+      100%{background-position:0% 50%}
+    }
+
+    h2{
+      font-family:'Orbitron',sans-serif;
+      margin-bottom:30px;
+      font-size:20px;
+      text-transform:uppercase;
+      color:#00fff7;
+      text-shadow:0 0 8px #00fff7,0 0 20px #ff00c8;
+      text-align:center;
+      pointer-events:none;
+    }
+
+    .btn{
+      width:85%;
+      max-width:320px;
+      padding:14px;
+      font-size:14px;
+      font-weight:bold;
+      border:none;
+      border-radius:10px;
+      margin-bottom:16px;
+      cursor:pointer;
+      color:white;
+      background:linear-gradient(135deg,#ff00c8,#00fff7);
+      text-transform:uppercase;
+      transition:.3s;
+      letter-spacing:.5px;
+      display:inline-block;
+      text-align:center;
+      text-decoration:none;
+      -webkit-tap-highlight-color: transparent;
+      outline:none;
+    }
+
+    .btn:active{transform:scale(.97);opacity:.85}
+    .btn:hover{transform:translateY(-2px) scale(1.02);box-shadow:0 0 12px #00fff7,0 0 25px #ff00c8}
+
+    .footer{
+      margin-top:20px;
+      font-size:11px;
+      color:#bbb;
+      text-align:center;
+      pointer-events:none;
+    }
+  </style>
+</head>
+<body 
+  oncontextmenu="return false" 
+  oncopy="return false" 
+  oncut="return false" 
+  onpaste="return false" 
+  onselectstart="return false"
+>
+
+
+
+  <!-- رفتن به صفحه فرم تغییر اکانت -->
+  <a class="btn" href="change.html">چنج اکانت کرکی</a>
+
+  <div class="footer"></div>
+
+  <script>
+    // جلوگیری از کلیدهای میانبر مرورگر
+    document.addEventListener("keydown", function(e) {
+      if ((e.ctrlKey && ["u","U","s","S","c","C"].includes(e.key)) || e.key === "F12") {
+        e.preventDefault();
+        return false;
+      }
+    });
+  </script>
+</body>
+</html>

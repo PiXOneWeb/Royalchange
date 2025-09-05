@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8">
+  <title>MaxChange - PWA</title>
+  <link rel="shortcut icon" href="Screenshot_20250826_154108_Chrome.jpg" type="image/x-icon">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif; user-select: none; }
+    html, body { height: 100%; display: flex; justify-content: center; align-items: center; overflow: hidden; -webkit-tap-highlight-color: transparent; }
+    body { background: linear-gradient(-45deg,#6a11cb,#2575fc,#6a11cb,#b721ff); background-size: 400% 400%; animation: gradientBG 8s ease infinite; }
+    @keyframes gradientBG { 0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%} }
+    .splash { display:flex; flex-direction: column; align-items:center; justify-content:center; text-align:center; width:100%; }
+    .logo { width:200px; height:200px; border-radius:50%; background:#fff; display:flex; justify-content:center; align-items:center; overflow:hidden; margin-bottom:30px; box-shadow:0 0 25px rgba(255,255,255,.4); animation:bounce 2s infinite; -webkit-tap-highlight-color: transparent; }
+    .logo img { width:95%; height:auto; border-radius:50%; pointer-events:none; }
+    h1 { color:#fff; font-size:40px; font-weight:bold; letter-spacing:3px; margin-bottom:30px; animation:fadeIn 2s ease; -webkit-tap-highlight-color: transparent; }
+    .telegram { margin-top:20px; }
+    .telegram img { width:70px; height:70px; pointer-events:none; }
+    @keyframes bounce { 0%,100%{transform:translateY(0);}50%{transform:translateY(-12px);} }
+    @keyframes fadeIn { from{opacity:0;} to{opacity:1;} }
+    a { outline:none; text-decoration:none; color:inherit; -webkit-tap-highlight-color: transparent; }
+
+    /* Overlay اینترنت */
+    #offlineOverlay {
+      display:none;
+      position:fixed;
+      inset:0;
+      background: rgba(0,0,0,0.85);
+      color:#fff;
+      font-family:'Vazirmatn',sans-serif;
+      font-size:20px;
+      text-align:center;
+      z-index:9999;
+      justify-content:center;
+      align-items:center;
+      flex-direction:column;
+      padding:20px;
+    }
+    #offlineOverlay img { width:80px; margin-bottom:20px; opacity:0.8; }
+  </style>
+</head>
+<body oncontextmenu="return false" oncopy="return false" oncut="return false" onpaste="return false" onselectstart="return false">
+
+  <div class="splash">
+    <div class="logo">
+      <img src="IMG_20250905_162013_194.jpg" alt="لوگو">
+    </div>
+    <h1>Royal Change</h1>
+    <a href="https://t.me/ROYAL_ON_king">
+      <div class="telegram">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram">
+      </div>
+    </a>
+  </div>
+
+  <!-- Overlay اینترنت -->
+  <div id="offlineOverlay">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e0/OOjs_UI_icon_alert-progress.svg" alt="No Internet">
+    <div>اینترنت وصل نیست</div>
+    <div>لطفاً اتصال خود را بررسی کنید</div>
+  </div>
+
+  <script>
+    const offlineOverlay = document.getElementById("offlineOverlay");
+
+    function updateOnlineStatus() {
+      if (!navigator.onLine) {
+        offlineOverlay.style.display = "flex"; // نمایش پیام
+      } else {
+        offlineOverlay.style.display = "none"; // مخفی کردن
+      }
+    }
+
+    // بررسی وضعیت اینترنت لحظه‌ای
+    window.addEventListener('online', updateOnlineStatus);
+    window.addEventListener('offline', updateOnlineStatus);
+    updateOnlineStatus();
+
+    // جلوگیری از کلیدهای میانبر
+    document.addEventListener("keydown", function(e) {
+      if ((e.ctrlKey && ["u","U","s","S","c","C"].includes(e.key)) || e.key === "F12") {
+        e.preventDefault();
+        return false;
+      }
+    });
+
+    // بعد از ۵ ثانیه رفتن به صفحه اصلی فقط اگر آنلاین باشد
+    setTimeout(() => {
+      if (navigator.onLine) {
+        window.location.href = "verify.html"; 
+      } else {
+        offlineOverlay.style.display = "flex";
+      }
+    }, 5000);
+  </script>
+</body>
+</html>
